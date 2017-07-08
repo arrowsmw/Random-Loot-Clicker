@@ -10,14 +10,12 @@ public class C3Slot : MonoBehaviour, IDropHandler
     public int id;
     private C3Inventory inv3;
     private Inventory inv;
-    private Player3Stats p3stats;
     private PlayerController pControl;
 
     void Start()
     {
         inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-        p3stats = GameObject.Find("P3Stats").GetComponent<Player3Stats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
     }
 

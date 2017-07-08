@@ -12,11 +12,7 @@ public class ToolTip : MonoBehaviour {
     private C2Inventory inv2;
     private C3Inventory inv3;
     private C4Inventory inv4;
-    private Player1Stats p1stats;
-    private Player2Stats p2stats;
-    private Player3Stats p3stats;
-    private Player4Stats p4stats;
-    private PlayerController pcontrol;
+    private PlayerController pControl;
 
     void Start()
     {
@@ -27,11 +23,7 @@ public class ToolTip : MonoBehaviour {
         inv2 = GameObject.Find("C2Inventory").GetComponent<C2Inventory>();
         inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
         inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
-        p1stats = GameObject.Find("P1Stats").GetComponent<Player1Stats>();
-        p2stats = GameObject.Find("P2Stats").GetComponent<Player2Stats>();
-        p3stats = GameObject.Find("P3Stats").GetComponent<Player3Stats>();
-        p4stats = GameObject.Find("P4Stats").GetComponent<Player4Stats>();
-        pcontrol = GameObject.Find("StatsController").GetComponent<PlayerController>();
+        pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
         equippedTooltip.SetActive(false);
     }
     
@@ -136,7 +128,7 @@ public class ToolTip : MonoBehaviour {
         stats += "\n\n<color=#2AA1F6FF>";
         if(item.DamageMulti != 0)
         {
-            stats += "Damage increased by: " + pcontrol.ValueIntoString(item.DamageMulti, false) + "%\n";
+            stats += "Damage increased by: " + pControl.ValueIntoString(item.DamageMulti, false) + "%\n";
         }
         if(item.CritChance != 0)
         {
@@ -148,11 +140,11 @@ public class ToolTip : MonoBehaviour {
         }
         if(item.Regen != 0)
         {
-            stats += "Health Regen increased by: " + pcontrol.ValueIntoString(item.Regen, false) + "\n";
+            stats += "Health Regen increased by: " + pControl.ValueIntoString(item.Regen, false) + "\n";
         }
         if(item.ArmourMulti != 0)
         {
-            stats += "Armour increase by: " + pcontrol.ValueIntoString(item.ArmourMulti, false) + "%\n";
+            stats += "Armour increase by: " + pControl.ValueIntoString(item.ArmourMulti, false) + "%\n";
         }
         if(item.EleResist != 0)
         {
@@ -175,7 +167,7 @@ public class ToolTip : MonoBehaviour {
                 color = "#FF8502FF";
                 break;
         }
-        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "Level: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pcontrol.ValueIntoString(item.Value, false) + " gold</color>";
+        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "Level: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
         item.TooltipDesc = data;
         tooltip.transform.GetChild(0).GetComponent<Text>().text = data;
         
@@ -198,7 +190,7 @@ public class ToolTip : MonoBehaviour {
         stats += "\n\n<color=#2AA1F6FF>";
         if (item.DamageMulti != 0)
         {
-            stats += "Damage increased by: " + pcontrol.ValueIntoString(item.DamageMulti, false) + "%\n";
+            stats += "Damage increased by: " + pControl.ValueIntoString(item.DamageMulti, false) + "%\n";
         }
         if (item.CritChance != 0)
         {
@@ -210,11 +202,11 @@ public class ToolTip : MonoBehaviour {
         }
         if (item.Regen != 0)
         {
-            stats += "Health Regen increased by: " + pcontrol.ValueIntoString(item.Regen, false) + "\n";
+            stats += "Health Regen increased by: " + pControl.ValueIntoString(item.Regen, false) + "\n";
         }
         if (item.ArmourMulti != 0)
         {
-            stats += "Armour increase by: " + pcontrol.ValueIntoString(item.ArmourMulti, false) + "%\n";
+            stats += "Armour increase by: " + pControl.ValueIntoString(item.ArmourMulti, false) + "%\n";
         }
         if (item.EleResist != 0)
         {
@@ -237,7 +229,7 @@ public class ToolTip : MonoBehaviour {
                 color = "#FF8502FF";
                 break;
         }
-        data = "<b>Equipped</b>" + "\n<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pcontrol.ValueIntoString(item.Value, false) + " gold</color>";
+        data = "<b>Equipped</b>" + "\n<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
         equippedTooltip.transform.GetChild(0).GetComponent<Text>().text = data;
 
     }
@@ -259,7 +251,7 @@ public class ToolTip : MonoBehaviour {
         stats += "\n\n<color=#2AA1F6FF>";
         if (item.DamageMulti != 0)
         {
-            stats += "Damage increased by: " + pcontrol.ValueIntoString(item.DamageMulti, false) + "%\n";
+            stats += "Damage increased by: " + pControl.ValueIntoString(item.DamageMulti, false) + "%\n";
         }
         if (item.CritChance != 0)
         {
@@ -271,11 +263,11 @@ public class ToolTip : MonoBehaviour {
         }
         if (item.Regen != 0)
         {
-            stats += "Health Regen increased by: " + pcontrol.ValueIntoString(item.Regen, false) + "\n";
+            stats += "Health Regen increased by: " + pControl.ValueIntoString(item.Regen, false) + "\n";
         }
         if (item.ArmourMulti != 0)
         {
-            stats += "Armour increase by: " + pcontrol.ValueIntoString(item.ArmourMulti, false) + "%\n";
+            stats += "Armour increase by: " + pControl.ValueIntoString(item.ArmourMulti, false) + "%\n";
         }
         if (item.EleResist != 0)
         {
@@ -301,25 +293,25 @@ public class ToolTip : MonoBehaviour {
 
         string comparison = "";
 
-        if(p1stats.active == true)
+        if(pControl.playerActive[1] == true)
         {
-            comparison += pcontrol.ItemComparison(inv1.items[item.ID], item, 1);
+            comparison += pControl.ItemComparison(inv1.items[item.ID], item, 1);
         }
-        else if(p2stats.active == true)
+        else if(pControl.playerActive[2] == true)
         {
-            comparison += pcontrol.ItemComparison(inv2.items[item.ID], item, 2);
+            comparison += pControl.ItemComparison(inv2.items[item.ID], item, 2);
 
         }
-        else if(p3stats.active == true)
+        else if(pControl.playerActive[3] == true)
         {
-            comparison += pcontrol.ItemComparison(inv3.items[item.ID], item, 3);
+            comparison += pControl.ItemComparison(inv3.items[item.ID], item, 3);
         }
-        else if(p4stats.active == true)
+        else if(pControl.playerActive[4] == true)
         {
-            comparison += pcontrol.ItemComparison(inv4.items[item.ID], item, 4);
+            comparison += pControl.ItemComparison(inv4.items[item.ID], item, 4);
         }
 
-        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pcontrol.ValueIntoString(item.Value, false) + " gold</color>";
+        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
 
         if(comparison != "")
         {

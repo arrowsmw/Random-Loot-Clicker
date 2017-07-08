@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     public List<double> p2stats = new List<double>();
     public List<double> p3stats = new List<double>();
     public List<double> p4stats = new List<double>();
+    public List<bool> playerCreated = new List<bool>();
+    public List<bool> playerActive = new List<bool>();
     string p1statString;
     string p2statString;
     string p3statString;
@@ -59,6 +61,12 @@ public class PlayerController : MonoBehaviour {
         p2statString = updateString(2);
         p3statString = updateString(3);
         p4statString = updateString(4);
+
+        for(int i = 0; i<5; i++)
+        {
+            playerCreated.Add(false);
+            playerActive.Add(false);
+        }
     }
 
     void Update()
@@ -455,19 +463,19 @@ public class PlayerController : MonoBehaviour {
         
         if (valueToConvert >= Mathf.Pow(10, 42))
         {
-            converted = (valueToConvert / Mathf.Pow(10, 42)).ToString("F3") + "sp";
+            converted = (valueToConvert / Mathf.Pow(10, 42)).ToString("F3") + "Sp";
         }
         else if (valueToConvert >= Mathf.Pow(10, 36))
         {
-            converted = (valueToConvert / Mathf.Pow(10, 36)).ToString("F3") + "sx";
+            converted = (valueToConvert / Mathf.Pow(10, 36)).ToString("F3") + "Sx";
         }
         else if (valueToConvert >= 1000000000000000000)
         {
-            converted = (valueToConvert / 1000000000000000000).ToString("F3") + "Q";
+            converted = (valueToConvert / 1000000000000000000).ToString("F3") + "Qi";
         }
         else if (valueToConvert >= 1000000000000000)
         {
-            converted = (valueToConvert / 1000000000000000).ToString("F3") + "q";
+            converted = (valueToConvert / 1000000000000000).ToString("F3") + "Qa";
         }
         else if(valueToConvert >= 1000000000000)
         {

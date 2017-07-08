@@ -8,14 +8,12 @@ public class C1Slot : MonoBehaviour, IDropHandler {
     public int id;
     private C1Inventory inv1;
     private Inventory inv;
-    private Player1Stats p1stats;
     private PlayerController pControl;
 
     void Start ()
     {
         inv1 = GameObject.Find("C1Inventory").GetComponent<C1Inventory>();
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-        p1stats = GameObject.Find("P1Stats").GetComponent<Player1Stats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
 	}
 

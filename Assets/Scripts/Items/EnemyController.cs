@@ -10,10 +10,6 @@ public class EnemyController : MonoBehaviour {
     public List<GameObject> enemyObjects = new List<GameObject>();
     public int enemyCount;
     public GameObject enemy;
-    private Player1Stats p1stats;
-    private Player2Stats p2stats;
-    private Player3Stats p3stats;
-    private Player4Stats p4stats;
     private GlobalStats glblstats;
     private PlayerController pControl;
     private Inventory inv;
@@ -21,10 +17,6 @@ public class EnemyController : MonoBehaviour {
 	void Start ()
     {
         enemyPanel = GameObject.Find("EnemyPanel");
-        p1stats = GameObject.Find("P1Stats").GetComponent<Player1Stats>();
-        p2stats = GameObject.Find("P2Stats").GetComponent<Player2Stats>();
-        p3stats = GameObject.Find("P3Stats").GetComponent<Player3Stats>();
-        p4stats = GameObject.Find("P4Stats").GetComponent<Player4Stats>();
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
         glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
@@ -190,28 +182,28 @@ public class EnemyController : MonoBehaviour {
 
     public void DamagePerSec()
     {
-        if (p1stats.created && pControl.p1stats[1] != 0)
+        if (pControl.playerCreated[1] == true && pControl.p1stats[1] != 0)
         {
             enemies[0].curHealth -= pControl.p1stats[1] / 10;
             enemyObjects[0].transform.GetChild(1).GetComponent<Text>().text = pControl.ValueIntoString(enemies[0].curHealth, false) + " /\n" + pControl.ValueIntoString(enemies[0].maxHealth, false);
             enemyObjects[0].GetComponentInChildren<Slider>().value = Mathf.Floor((((float)enemies[0].curHealth / (float)enemies[0].maxHealth)) * 100);
             
         }
-        if (p2stats.created && pControl.p2stats[1] != 0)
+        if (pControl.playerCreated[2] && pControl.p2stats[1] != 0)
         {
             enemies[0].curHealth -= pControl.p2stats[1] / 10;
             enemyObjects[0].transform.GetChild(1).GetComponent<Text>().text = pControl.ValueIntoString(enemies[0].curHealth, false) + " /\n" + pControl.ValueIntoString(enemies[0].maxHealth, false);
             enemyObjects[0].GetComponentInChildren<Slider>().value = Mathf.Floor((((float)enemies[0].curHealth / (float)enemies[0].maxHealth)) * 100);
             
         }
-        if (p3stats.created && pControl.p3stats[1] != 0)
+        if (pControl.playerCreated[3] && pControl.p3stats[1] != 0)
         {
             enemies[0].curHealth -= pControl.p3stats[1] / 10;
             enemyObjects[0].transform.GetChild(1).GetComponent<Text>().text = pControl.ValueIntoString(enemies[0].curHealth, false) + " /\n" + pControl.ValueIntoString(enemies[0].maxHealth, false);
             enemyObjects[0].GetComponentInChildren<Slider>().value = Mathf.Abs(((float)enemies[0].curHealth / (float)enemies[0].maxHealth) * 100);
             
         }
-        if (p4stats.created && pControl.p4stats[1] != 0)
+        if (pControl.playerCreated[4] && pControl.p4stats[1] != 0)
         {
             enemies[0].curHealth -= pControl.p4stats[1] / 10;
             enemyObjects[0].transform.GetChild(1).GetComponent<Text>().text = pControl.ValueIntoString(enemies[0].curHealth, false) + " /\n" + pControl.ValueIntoString(enemies[0].maxHealth, false);

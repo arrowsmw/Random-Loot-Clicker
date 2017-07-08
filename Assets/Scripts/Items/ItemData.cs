@@ -17,10 +17,6 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private C3Inventory inv3;
     private C4Inventory inv4;
     private ToolTip tooltip;
-    private Player1Stats p1stats;
-    private Player2Stats p2stats;
-    private Player3Stats p3stats;
-    private Player4Stats p4stats;
     private GlobalStats glblstats;
     private PlayerController pControl;
     public int currentSlot;
@@ -37,10 +33,6 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         inv2 = GameObject.Find("C2Inventory").GetComponent<C2Inventory>();
         inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
         inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
-        p1stats = GameObject.Find("P1Stats").GetComponent<Player1Stats>();
-        p2stats = GameObject.Find("P2Stats").GetComponent<Player2Stats>();
-        p3stats = GameObject.Find("P3Stats").GetComponent<Player3Stats>();
-        p4stats = GameObject.Find("P4Stats").GetComponent<Player4Stats>();
         glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
         tooltip = inv.GetComponent<ToolTip>();
@@ -91,14 +83,16 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 {
                     currentSlot = this.slot;
                     this.transform.position = eventData.position;
-                    if (p1stats.active == true)
+
+                    if (pControl.playerActive[1] == true)
                         inv1.items[slot] = new Item();
-                    else if (p2stats.active == true)
+                    else if (pControl.playerActive[2] == true)
                         inv2.items[slot] = new Item();
-                    else if (p3stats.active == true)
+                    else if (pControl.playerActive[3] == true)
                         inv3.items[slot] = new Item();
-                    else if (p4stats.active == true)
+                    else if (pControl.playerActive[4] == true)
                         inv4.items[slot] = new Item();
+
                 }
             }
         }
@@ -118,7 +112,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     inv.items[slot] = item;
                 }
             }
-            else if(p1stats.active == true)
+            else if(pControl.playerActive[1] == true)
             {
                 this.transform.SetParent(inv1.slots[slot].transform);
                 this.transform.position = inv1.slots[slot].transform.position;
@@ -128,7 +122,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     inv1.items[slot] = item;
                 }
             }
-            else if(p2stats.active == true)
+            else if(pControl.playerActive[2] == true)
             {
                 this.transform.SetParent(inv2.slots[slot].transform);
                 this.transform.position = inv2.slots[slot].transform.position;
@@ -138,7 +132,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     inv2.items[slot] = item;
                 }
             }
-            else if(p3stats.active == true)
+            else if(pControl.playerActive[3] == true)
             {
                 this.transform.SetParent(inv3.slots[slot].transform);
                 this.transform.position = inv3.slots[slot].transform.position;
@@ -148,7 +142,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     inv3.items[slot] = item;
                 }
             }
-            else if(p4stats.active == true)
+            else if(pControl.playerActive[4] == true)
             {
                 this.transform.SetParent(inv4.slots[slot].transform);
                 this.transform.position = inv4.slots[slot].transform.position;
@@ -169,22 +163,22 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if(item.Equipped == false)
         {
-            if(p1stats.active == true && inv1.items[item.ID].ID != -1)
+            if(pControl.playerActive[1] == true && inv1.items[item.ID].ID != -1)
             {
                 tooltip.ActivateComparison(item);
                 tooltip.Activate(inv1.items[item.ID]);
             }
-            else if(p2stats.active == true && inv2.items[item.ID].ID != -1)
+            else if(pControl.playerActive[2] == true && inv2.items[item.ID].ID != -1)
             {
                 tooltip.ActivateComparison(item);
                 tooltip.Activate(inv2.items[item.ID]);
             }
-            else if(p3stats.active == true && inv3.items[item.ID].ID != -1)
+            else if(pControl.playerActive[3] == true && inv3.items[item.ID].ID != -1)
             {
                 tooltip.ActivateComparison(item);
                 tooltip.Activate(inv3.items[item.ID]);
             }
-            else if(p4stats.active == true && inv4.items[item.ID].ID != -1)
+            else if(pControl.playerActive[4] == true && inv4.items[item.ID].ID != -1)
             {
                 tooltip.ActivateComparison(item);
                 tooltip.Activate(inv4.items[item.ID]);
@@ -314,7 +308,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             else if (slotType.name == "Slot(Clone)")
             {
-                if (p1stats.active == true && p1stats.created == true)
+                if (pControl.playerActive[1] == true && pControl.playerCreated[1] == true)
                 {
                     if (inv1.items[item.ID].ID == -1)
                     {
@@ -348,7 +342,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
                     }
                 }
-                else if (p2stats.active == true && p2stats.created == true)
+                else if (pControl.playerActive[2] == true && pControl.playerCreated[2] == true)
                 {
                     if (inv2.items[item.ID].ID == -1)
                     {
@@ -380,7 +374,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                         pControl.addStats(item, 2);
                     }
                 }
-                else if (p3stats.active == true && p3stats.created == true)
+                else if (pControl.playerActive[3] == true && pControl.playerCreated[3] == true)
                 {
                     if (inv3.items[item.ID].ID == -1)
                     {
@@ -412,7 +406,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                         pControl.addStats(item, 3);
                     }
                 }
-                else if (p4stats.active == true && p4stats.created == true)
+                else if (pControl.playerActive[4] == true && pControl.playerCreated[4] == true)
                 {
                     if (inv4.items[item.ID].ID == -1)
                     {
@@ -449,7 +443,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             else
             {
-                Debug.Log("You done fucked up");
+                Debug.Log("Item Date Error: Line 446");
             }
         }
     }

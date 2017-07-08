@@ -11,10 +11,6 @@ public class Slot : MonoBehaviour, IDropHandler {
     private C2Inventory inv2;
     private C3Inventory inv3;
     private C4Inventory inv4;
-    private Player1Stats p1stats;
-    private Player2Stats p2stats;
-    private Player3Stats p3stats;
-    private Player4Stats p4stats;
     private PlayerController pControl;
 
     void Start()
@@ -24,10 +20,6 @@ public class Slot : MonoBehaviour, IDropHandler {
         inv2 = GameObject.Find("C2Inventory").GetComponent<C2Inventory>();
         inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
         inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
-        p1stats = GameObject.Find("P1Stats").GetComponent<Player1Stats>();
-        p2stats = GameObject.Find("P2Stats").GetComponent<Player2Stats>();
-        p3stats = GameObject.Find("P3Stats").GetComponent<Player3Stats>();
-        p4stats = GameObject.Find("P4Stats").GetComponent<Player4Stats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
     }
 
@@ -43,7 +35,7 @@ public class Slot : MonoBehaviour, IDropHandler {
             else if (inv.items[id].ID == -1)
             {
                 inv.capacity += 1;
-                if (droppedItem.item.Equipped == true && p1stats.active == true)
+                if (droppedItem.item.Equipped == true && pControl.playerActive[1] == true)
                 {
                     inv1.items[droppedItem.slot] = new Item();
                     inv.items[id] = droppedItem.item;
@@ -51,7 +43,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     droppedItem.item.Equipped = false;
                     pControl.removeStats(droppedItem.item, 1);
                 }
-                else if(droppedItem.item.Equipped == true && p2stats.active == true)
+                else if(droppedItem.item.Equipped == true && pControl.playerActive[2] == true)
                 {
                     inv2.items[droppedItem.slot] = new Item();
                     inv.items[id] = droppedItem.item;
@@ -59,7 +51,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     droppedItem.item.Equipped = false;
                     pControl.removeStats(droppedItem.item, 2);
                 }
-                else if (droppedItem.item.Equipped == true && p3stats.active == true)
+                else if (droppedItem.item.Equipped == true && pControl.playerActive[3] == true)
                 {
                     inv3.items[droppedItem.slot] = new Item();
                     inv.items[id] = droppedItem.item;
@@ -67,7 +59,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     droppedItem.item.Equipped = false;
                     pControl.removeStats(droppedItem.item, 3);
                 }
-                else if (droppedItem.item.Equipped == true && p4stats.active == true)
+                else if (droppedItem.item.Equipped == true && pControl.playerActive[4] == true)
                 {
                     inv4.items[droppedItem.slot] = new Item();
                     inv.items[id] = droppedItem.item;
@@ -96,7 +88,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     inv.items[id] = droppedItem.item;
                     droppedItem.slot = id;
                 }
-                else if(p1stats.active == true)
+                else if(pControl.playerActive[1] == true)
                 {
                     Transform item = this.transform.GetChild(0);
                     if (item.GetComponent<ItemData>().item.ID == droppedItem.item.ID)
@@ -115,7 +107,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                     }
 
                 }
-                else if(p2stats.active == true)
+                else if(pControl.playerActive[2] == true)
                 {
                     Transform item = this.transform.GetChild(0);
                     if (item.GetComponent<ItemData>().item.ID == droppedItem.item.ID)
@@ -133,7 +125,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                         pControl.removeStats(droppedItem.item, 2);
                     }
                 }
-                else if (p3stats.active == true)
+                else if (pControl.playerActive[3] == true)
                 {
                     Transform item = this.transform.GetChild(0);
                     if (item.GetComponent<ItemData>().item.ID == droppedItem.item.ID)
@@ -151,7 +143,7 @@ public class Slot : MonoBehaviour, IDropHandler {
                         pControl.removeStats(droppedItem.item, 3);
                     }
                 }
-                else if (p4stats.active == true)
+                else if (pControl.playerActive[4] == true)
                 {
                     Transform item = this.transform.GetChild(0);
                     if (item.GetComponent<ItemData>().item.ID == droppedItem.item.ID)

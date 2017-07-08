@@ -10,14 +10,12 @@ public class C4Slot : MonoBehaviour, IDropHandler
     public int id;
     private C4Inventory inv4;
     private Inventory inv;
-    private Player4Stats p4stats;
     private PlayerController pControl;
 
     void Start()
     {
         inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-        p4stats = GameObject.Find("P4Stats").GetComponent<Player4Stats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
     }
 

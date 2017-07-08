@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class C1Inventory : MonoBehaviour {
 
 
-    GameObject inventoryPanel;
-    GameObject slotPanel;
+    public GameObject inventoryPanel;
+    public GameObject slotPanel;
     public GameObject inventorySlot;
     public GameObject inventoryItem;
 
@@ -19,8 +19,6 @@ public class C1Inventory : MonoBehaviour {
     {
 
         slotAmount = 10;
-        inventoryPanel = GameObject.Find("C1InvPanel");
-        slotPanel = inventoryPanel.transform.FindChild("C1SlotPanel").gameObject;
         for(int i=0; i<slotAmount; i++)
         {
             items.Add(new Item());
