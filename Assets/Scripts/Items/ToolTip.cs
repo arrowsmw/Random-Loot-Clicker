@@ -8,10 +8,10 @@ public class ToolTip : MonoBehaviour {
     private string data;
     private GameObject tooltip;
     private GameObject equippedTooltip;
-    private C1Inventory inv1;
-    private C2Inventory inv2;
-    private C3Inventory inv3;
-    private C4Inventory inv4;
+    private CInventory inv1;
+    private CInventory inv2;
+    private CInventory inv3;
+    private CInventory inv4;
     private PlayerController pControl;
 
     void Start()
@@ -19,10 +19,10 @@ public class ToolTip : MonoBehaviour {
         tooltip = GameObject.Find("ToolTip");
         tooltip.SetActive(false);
         equippedTooltip = GameObject.Find("EquippedToolTip");
-        inv1 = GameObject.Find("C1Inventory").GetComponent<C1Inventory>();
-        inv2 = GameObject.Find("C2Inventory").GetComponent<C2Inventory>();
-        inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
-        inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
+        inv1 = GameObject.Find("C1Inventory").GetComponent<CInventory>();
+        inv2 = GameObject.Find("C2Inventory").GetComponent<CInventory>();
+        inv3 = GameObject.Find("C3Inventory").GetComponent<CInventory>();
+        inv4 = GameObject.Find("C4Inventory").GetComponent<CInventory>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
         equippedTooltip.SetActive(false);
     }

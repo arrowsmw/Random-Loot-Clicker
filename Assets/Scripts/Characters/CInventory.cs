@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class C1Inventory : MonoBehaviour {
+public class CInventory : MonoBehaviour {
 
 
     public GameObject inventoryPanel;
@@ -15,15 +15,15 @@ public class C1Inventory : MonoBehaviour {
     public List<Item> items = new List<Item>();
     public List<GameObject> slots = new List<GameObject>();
 
-	void Start ()
+    void Start()
     {
 
         slotAmount = 10;
-        for(int i=0; i<slotAmount; i++)
+        for (int i = 0; i < slotAmount; i++)
         {
             items.Add(new Item());
             slots.Add(Instantiate(inventorySlot));
-            slots[i].GetComponent<C1Slot>().id = i;
+            slots[i].GetComponent<CSlot>().id = i;
             slots[i].transform.SetParent(slotPanel.transform);
             switch (i)
             {
@@ -59,6 +59,6 @@ public class C1Inventory : MonoBehaviour {
                     break;
             }
         }
-	}
-	
+    }
+
 }

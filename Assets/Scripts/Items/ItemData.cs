@@ -12,10 +12,10 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public int slot;
 
     private Inventory inv;
-    private C1Inventory inv1;
-    private C2Inventory inv2;
-    private C3Inventory inv3;
-    private C4Inventory inv4;
+    private CInventory inv1;
+    private CInventory inv2;
+    private CInventory inv3;
+    private CInventory inv4;
     private ToolTip tooltip;
     private GlobalStats glblstats;
     private PlayerController pControl;
@@ -29,10 +29,10 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     void Start()
     {
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-        inv1 = GameObject.Find("C1Inventory").GetComponent<C1Inventory>();
-        inv2 = GameObject.Find("C2Inventory").GetComponent<C2Inventory>();
-        inv3 = GameObject.Find("C3Inventory").GetComponent<C3Inventory>();
-        inv4 = GameObject.Find("C4Inventory").GetComponent<C4Inventory>();
+        inv1 = GameObject.Find("C1Inventory").GetComponent<CInventory>();
+        inv2 = GameObject.Find("C2Inventory").GetComponent<CInventory>();
+        inv3 = GameObject.Find("C3Inventory").GetComponent<CInventory>();
+        inv4 = GameObject.Find("C4Inventory").GetComponent<CInventory>();
         glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
         tooltip = inv.GetComponent<ToolTip>();
@@ -224,7 +224,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             
             GameObject slotType = this.transform.parent.gameObject;
-            if (slotType.name == "C1Slot(Clone)")
+            if (slotType.name == "CSlot(Clone)" && pControl.playerActive[1] == true)
             {
                 for (int i = 0; i < inv.items.Count; i++)
                 {
@@ -246,7 +246,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 }
 
             }
-            else if (slotType.name == "C2Slot(Clone)")
+            else if (slotType.name == "CSlot(Clone)" && pControl.playerActive[2] == true)
             {
                 for (int i = 0; i < inv.items.Count; i++)
                 {
@@ -266,7 +266,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
                 }
             }
-            else if (slotType.name == "C3Slot(Clone)")
+            else if (slotType.name == "CSlot(Clone)" && pControl.playerActive[3] == true)
             {
                 for(int i = 0; i < inv.items.Count; i++)
                 {
@@ -286,7 +286,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
                 }
             }
-            else if (slotType.name == "C4Slot(Clone)")
+            else if (slotType.name == "CSlot(Clone)" && pControl.playerActive[4] == true)
             {
                 for (int i = 0; i < inv.items.Count; i++)
                 {
