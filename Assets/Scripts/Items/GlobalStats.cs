@@ -16,11 +16,14 @@ public class GlobalStats : MonoBehaviour
     public int activeChar;
     public int curXp;
     public int maxXp;
+    public int totalXp;
+    public int totalKills;
     public UnityEngine.UI.Text goldText;
     public UnityEngine.UI.Text diamondText;
-    public UnityEngine.UI.Text statsText;
+    public UnityEngine.UI.Text itemStatsText;
     public UnityEngine.UI.Text xpText;
     public UnityEngine.UI.Text levelText;
+    public UnityEngine.UI.Text combatStatsText;
     public UnityEngine.UI.Slider xpSlider;
     private PlayerController pControl;
 
@@ -34,7 +37,8 @@ public class GlobalStats : MonoBehaviour
         goldText.text = pControl.ValueIntoString(gold, false);
         diamondText.text = pControl.ValueIntoString(diamonds, false);
         total = commons + legendaries + rares + epics;
-        statsText.text = "Commons: " + commons + "\nRares: " + rares + "\nEpics:  " + epics + "\nLegendaries: " + legendaries + "\nTotal: " + total;
+        combatStatsText.text = "Kills: " + totalKills + "\nTotal Exp: " + totalXp;
+        itemStatsText.text = "Commons: " + commons + "\nRares: " + rares + "\nEpics:  " + epics + "\nLegendaries: " + legendaries + "\nTotal: " + total;
         xpSlider.value = ((float)curXp / (float)maxXp) * 100;
         if(curXp >= maxXp)
         {

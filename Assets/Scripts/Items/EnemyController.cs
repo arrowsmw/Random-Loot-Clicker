@@ -123,11 +123,28 @@ public class EnemyController : MonoBehaviour {
     {
         
         enemyCount -= 1;
+        glblstats.totalKills += 1;
+        glblstats.totalXp+= (int)Mathf.Floor((2 * glblstats.playerLevel) + ((glblstats.playerLevel * glblstats.playerLevel) / 2));
         glblstats.gold += Mathf.Floor(((float)enemies[enemyNum].maxHealth) / 5);
         glblstats.curXp += (int)Mathf.Floor((2 * glblstats.playerLevel) +((glblstats.playerLevel * glblstats.playerLevel)/2));
         if(Random.Range(1, 4) == 1)
         {
             Item itemToAdd = new Item(Random.Range(0, 10), enemies[enemyNum].level);
+            switch(itemToAdd.Rarity)
+            {
+                case 1:
+                    glblstats.commons += 1;
+                    break;
+                case 2:
+                    glblstats.rares += 1;
+                    break;
+                case 3:
+                    glblstats.epics += 1;
+                    break;
+                case 4:
+                    glblstats.legendaries += 1;
+                    break;
+            }
             inv.AddItem(itemToAdd);
            
         }
