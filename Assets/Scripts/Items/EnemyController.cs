@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour {
     private GlobalStats glblstats;
     private PlayerController pControl;
     private Inventory inv;
+    private MapController mapController;
 
 	void Start ()
     {
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour {
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
         glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
+        mapController = GameObject.Find("EnemyPanel").GetComponent<MapController>();
         spawnEnemy();
         StartCoroutine(Autotick());
 	}
@@ -121,13 +123,13 @@ public class EnemyController : MonoBehaviour {
 
     public void killEnemy(int enemyNum)
     {
-        
+        mapController.curKills += 1;
         enemyCount -= 1;
         glblstats.totalKills += 1;
-        glblstats.totalXp+= (int)Mathf.Floor((2 * glblstats.playerLevel) + ((glblstats.playerLevel * glblstats.playerLevel) / 2));
+        glblstats.totalXp += (int)Mathf.Floor((2 * enemies[enemyNum].level) + ((enemies[enemyNum].level * enemies[enemyNum].level) / 2));
         glblstats.gold += Mathf.Floor(((float)enemies[enemyNum].maxHealth) / 5);
-        glblstats.curXp += (int)Mathf.Floor((2 * glblstats.playerLevel) +((glblstats.playerLevel * glblstats.playerLevel)/2));
-        if(Random.Range(1, 4) == 1)
+        glblstats.curXp += (int)Mathf.Floor((2 * enemies[enemyNum].level) + ((enemies[enemyNum].level * enemies[enemyNum].level) / 2));
+        if (Random.Range(1, 4) == 1)
         {
             Item itemToAdd = new Item(Random.Range(0, 10), enemies[enemyNum].level);
             switch(itemToAdd.Rarity)
@@ -256,7 +258,8 @@ public class Enemy
     public Enemy()
     {
         GlobalStats glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
-        this.level = glblstats.playerLevel;
+        MapController mapController = GameObject.Find("EnemyPanel").GetComponent<MapController>();
+        this.level = ((mapController.curMap * 10) + mapController.mapLevel);
         this.maxHealth = (100 * Mathf.Pow(1.3f, this.level-1));
         this.curHealth = maxHealth;
         this.damage = (int)(((15 * this.level)-5) * Mathf.Pow(1.2f, this.level-1));

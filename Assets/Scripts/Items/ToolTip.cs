@@ -13,6 +13,7 @@ public class ToolTip : MonoBehaviour {
     private CInventory inv3;
     private CInventory inv4;
     private PlayerController pControl;
+    private GlobalStats glblstats;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class ToolTip : MonoBehaviour {
         inv3 = GameObject.Find("C3Inventory").GetComponent<CInventory>();
         inv4 = GameObject.Find("C4Inventory").GetComponent<CInventory>();
         pControl = GameObject.Find("StatsController").GetComponent<PlayerController>();
+        glblstats = GameObject.Find("StatsController").GetComponent<GlobalStats>();
         equippedTooltip.SetActive(false);
     }
     
@@ -79,14 +81,7 @@ public class ToolTip : MonoBehaviour {
         this.item = item;
         if(item.Equipped == false)
         {
-            if (item.TooltipDesc == "empty")
-            {
-                ConstructDataString();
-            }
-            else
-            {
-                tooltip.transform.GetChild(0).GetComponent<Text>().text = item.TooltipDesc;
-            }
+            ConstructDataString();
             tooltip.SetActive(true);
         }
         else
@@ -116,6 +111,7 @@ public class ToolTip : MonoBehaviour {
     {
         string color ="";
         string stats ="";
+        string level ="";
         if(item.Power != 0)
         {
             stats = "\n\nPower: " + item.Power;
@@ -167,7 +163,17 @@ public class ToolTip : MonoBehaviour {
                 color = "#FF8502FF";
                 break;
         }
-        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "Level: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
+
+        if(item.Level > glblstats.playerLevel)
+        {
+            level = "<color=#FF0000FF>\nLevel: " + item.Level + " </color>";
+        }
+        else
+        {
+            level = "<color=#FFFFFFFF>\nLevel: " + item.Level + " </color>";
+        }
+
+        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
         item.TooltipDesc = data;
         tooltip.transform.GetChild(0).GetComponent<Text>().text = data;
         
@@ -177,6 +183,7 @@ public class ToolTip : MonoBehaviour {
     {
         string color = "";
         string stats = "";
+        string level = "";
 
         if (item.Power != 0)
         {
@@ -229,7 +236,17 @@ public class ToolTip : MonoBehaviour {
                 color = "#FF8502FF";
                 break;
         }
-        data = "<b>Equipped</b>" + "\n<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
+
+        if (item.Level > glblstats.playerLevel)
+        {
+            level = "<color=#FF0000FF>\nLevel: " + item.Level + " </color>";
+        }
+        else
+        {
+            level = "<color=#FFFFFFFF>\nLevel: " + item.Level + " </color>";
+        }
+
+        data = "<b>Equipped</b>" + "\n<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
         equippedTooltip.transform.GetChild(0).GetComponent<Text>().text = data;
 
     }
@@ -238,6 +255,7 @@ public class ToolTip : MonoBehaviour {
     {
         string color = "";
         string stats = "";
+        string level = "";
 
         if (item.Power != 0)
         {
@@ -311,7 +329,16 @@ public class ToolTip : MonoBehaviour {
             comparison += pControl.ItemComparison(inv4.items[item.ID], item, 4);
         }
 
-        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + "\nLevel: " + item.Level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
+        if (item.Level > glblstats.playerLevel)
+        {
+            level = "<color=#FF0000FF>\nLevel: " + item.Level + " </color>";
+        }
+        else
+        {
+            level = "<color=#FFFFFFFF>\nLevel: " + item.Level + " </color>";
+        }
+
+        data = "<color=" + color + "><b>" + item.Title + "</b></color>\n" + item.Description + stats + level + "\n<color=#DFEC00FF>Sells for: " + pControl.ValueIntoString(item.Value, false) + " gold</color>";
 
         if(comparison != "")
         {
